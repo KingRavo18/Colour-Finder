@@ -1,14 +1,23 @@
 :root{
+    color-scheme: light dark;
     --text-color: light-dark(rgb(24, 24, 24), snow);
+    --background-color: light-dark(rgb(235, 235, 235), rgb(31, 31, 31));
 }
 
 *{
     font-family: Arial, Helvetica, sans-serif;
     color: var(--text-color);
+    margin: 0;
+    padding: 0;
 }
 
 body{
     text-align: center;
+    background-color: var(--background-color);
+}
+
+main{
+    
 }
 
 h1{
@@ -16,11 +25,11 @@ h1{
 }
 
 input{
-
+    cursor: pointer;
 }
 
 button{
-
+    cursor: pointer;
 }
 
 .colour-input-container{
