@@ -1,11 +1,36 @@
 :root{
-
+    --text-color: light-dark(rgb(24, 24, 24), snow);
 }
 
 *{
-
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--text-color);
 }
 
 body{
-    
+    text-align: center;
+}
+
+h1{
+    font-size: 3rem;
+}
+
+input{
+
+}
+
+button{
+
+}
+
+.colour-input-container{
+    text-align: left;
+    display: flex;
+    justify-content: center;
+    gap: 0.5vw;
+
+    & label{
+        display: flex;
+        flex-direction: column;
+    }
 }
