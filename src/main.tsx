@@ -5,9 +5,6 @@ import ColourFinder from './ColourFinder';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <main>
-        <h1>Colour Finder</h1>
-        <ColourFinder />
-    </main>
+    <ColourFinder />
   </StrictMode>,
 )
