@@ -61,3 +61,7 @@ button{
     max-width: 10rem;
     margin: 5rem 0;
 }
+
+.error-message{
+    color: red;
+}
