@@ -6,9 +6,14 @@ export default function ColourFinder(){
     const [isError, setIsError] = useState<boolean>(false);
     const [colourData, setColourData] = useState<null>(null);
 
-    function findColour(): void{
+    async function findColour(): Promise<void>{
+        if(colour.trim() === ""){
+            return;
+        }
+        setIsLoading(true);
         try{
-            setIsLoading(true);
+            const response = await fetch(`https://www.color.serialif.com/${colour}`);
+            setIsError(false);
             setIsLoading(false);
         }
         catch(error){

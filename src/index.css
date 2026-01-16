@@ -15,7 +15,6 @@
 }
 
 body{
-    text-align: center;
     background-color: var(--background-color);
 }
 
@@ -78,12 +77,17 @@ button{
     }
 }
 
-.message-text{
-    max-width: 10rem;
-    margin: 5rem 0;
-    font-size: 0.9em;
+.result-container{
+
+
+    & .message-text{
+        max-width: 10rem;
+        margin: 5rem 0;
+        font-size: 0.9em;
+    }
+
+    & .error-message{
+        color: red;
+    }
 }
 
-.error-message{
-    color: red;
-}
