@@ -4,6 +4,7 @@ export default function ColourFinder(){
     const [colour, setColour] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [isError, setIsError] = useState<boolean>(false);
+    const [colourData, setColourData] = useState<null>(null);
 
     function findColour(): void{
         try{
@@ -13,6 +14,12 @@ export default function ColourFinder(){
         catch(error){
             setIsError(true);
         }
+    }
+
+    const messages = {
+        intro: <p className="message-text">Please input the name of your colour</p>,
+        loading: <p className="message-text">Loading...</p>,
+        error: <p className="message-text error-message"> Could not find this colour. Please choose another or try again later.</p>
     }
 
     return(
@@ -35,27 +42,15 @@ export default function ColourFinder(){
                     </button>
                 </div>
             </div>
+            
+            <div className="result-container">
+                {!isLoading && !isError && messages.intro}
+                {isLoading && !isError && messages.loading}
+                {!isLoading && isError && messages.error}
 
-            {!isLoading && !isError &&
-                <p className="message-text">
-                    Please input the name of your colour
-                </p>
-            }
-
-            {isLoading && !isError &&
-                <p className="message-text">
-                    Loading...
-                </p>
-            }
-
-            {!isLoading && isError &&
-                <p className="message-text error-message">
-                    Could not find this colour. Please choose another or try again later.
-                </p>
-            }
-
-            <div>
-
+                {colourData && !isError && !isLoading &&
+                    <div></div>  
+                }
             </div>
         </main>
     );
