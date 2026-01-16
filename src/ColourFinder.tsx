@@ -17,7 +17,7 @@ export default function ColourFinder(){
     }
 
     const messages = {
-        intro: <p className="message-text">Please input the name of your colour</p>,
+        intro: <p className="message-text">Please input the name of your colour.</p>,
         loading: <p className="message-text">Loading...</p>,
         error: <p className="message-text error-message"> Could not find this colour. Please choose another or try again later.</p>
     }
