@@ -1,29 +1,39 @@
 import { useState } from "react";
+import { SyncLoader } from "react-spinners";
+
+type ColourData = {
+
+}
 
 export default function ColourFinder(){
     const [colour, setColour] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [isError, setIsError] = useState<boolean>(false);
-    const [colourData, setColourData] = useState<null>(null);
+    const [colourData, setColourData] = useState<ColourData | null>(null);
 
     async function findColour(): Promise<void>{
         if(colour.trim() === ""){
             return;
         }
+        setColourData(null);
         setIsLoading(true);
         try{
             const response = await fetch(`https://www.color.serialif.com/${colour}`);
+            if(!response.ok){
+                throw new Error("Could not retrieve colour.");
+            }
             setIsError(false);
-            setIsLoading(false);
         }
         catch(error){
             setIsError(true);
+        }
+        finally{
+            setIsLoading(false);
         }
     }
 
     const messages = {
         intro: <p className="message-text">Please input the name of your colour.</p>,
-        loading: <p className="message-text">Loading...</p>,
         error: <p className="message-text error-message"> Could not find this colour. Please choose another or try again later.</p>
     }
 
@@ -50,7 +60,7 @@ export default function ColourFinder(){
             
             <div className="result-container">
                 {!isLoading && !isError && messages.intro}
-                {isLoading && !isError && messages.loading}
+                {isLoading && !isError && <SyncLoader size={5} color="var(--text-color)"/>}
                 {!isLoading && isError && messages.error}
 
                 {colourData && !isError && !isLoading &&
