@@ -2,7 +2,15 @@ import { useState } from "react";
 import { SyncLoader } from "react-spinners";
 
 type ColourData = {
+    keyword: string;
+    rgbValue: string;
+}
 
+type ApiResponse = {
+    base: {
+        keyword: string,
+        rgb: { value: string }
+    }
 }
 
 export default function ColourFinder(){
@@ -18,11 +26,16 @@ export default function ColourFinder(){
         setColourData(null);
         setIsLoading(true);
         try{
-            const response = await fetch(`https://www.color.serialif.com/${colour}`);
+            const response = await fetch(`https://color.serialif.com/keyword=${colour}`);
             if(!response.ok){
                 throw new Error("Could not retrieve colour.");
             }
+            const data: ApiResponse = await response.json();
             setIsError(false);
+            setColourData({
+                keyword: data.base.keyword,
+                rgbValue: data.base.rgb.value
+            });
         }
         catch(error){
             setIsError(true);
@@ -64,7 +77,9 @@ export default function ColourFinder(){
                 {!isLoading && isError && messages.error}
 
                 {colourData && !isError && !isLoading &&
-                    <div></div>  
+                    <div>
+                        <h2>{colourData.keyword}</h2>
+                    </div>  
                 }
             </div>
         </main>
