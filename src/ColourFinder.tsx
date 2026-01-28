@@ -60,6 +60,7 @@ export default function ColourFinder(){
 
     const messages = {
         intro: <p className="message-text">Please input the name of your colour.</p>,
+        loading: <SyncLoader size={5} color="var(--text-color)" style={{paddingTop: "5rem"}}/>,
         error: <p className="message-text error-message"> Could not find this colour. Please choose another or try again later.</p>
     }
 
@@ -86,7 +87,7 @@ export default function ColourFinder(){
             
             <div className="result-container">
                 {!isLoading && !isError && !colourData && messages.intro}
-                {isLoading && !isError && <SyncLoader size={5} color="var(--text-color)" style={{paddingTop: "5rem"}}/>}
+                {isLoading && !isError && messages.loading}
                 {!isLoading && isError && messages.error}
 
                 {colourData && !isError && !isLoading &&
