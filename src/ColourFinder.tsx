@@ -7,9 +7,9 @@ type ColourData = {
 }
 
 type ApiResponse = {
-    base: {
-        keyword: string,
-        rgb: { value: string }
+    data: {
+        name: string,
+        rgb: string 
     }
 }
 
@@ -18,32 +18,44 @@ export default function ColourFinder(){
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [isError, setIsError] = useState<boolean>(false);
     const [colourData, setColourData] = useState<ColourData | null>(null);
+    const [isColourLight, setIsColourLight] = useState<boolean>(false);
 
     async function findColour(): Promise<void>{
-        if(colour.trim() === ""){
+        if(colour.trim() === "" || colour.trim() === colourData?.keyword.toLowerCase()){
             return;
         }
         setColourData(null);
         setIsLoading(true);
         try{
-            const response = await fetch(`/api/keyword=${colour}`);
+            const response = await fetch(`api/${colour.trim().replace(/ /g,"")}`);
             if(!response.ok){
                 throw new Error("Could not retrieve colour.");
             }
             const data: ApiResponse = await response.json();
-            const keyword = data.base.keyword;
+            const keyword = data.data.name;
             setIsError(false);
             setColourData({
                 keyword: keyword.at(0)?.toUpperCase() + keyword.slice(1),
-                rgbValue: data.base.rgb.value
+                rgbValue: data.data.rgb
             });
+            changeRgbTextColour(data.data.rgb);
         }
-        catch(error){
+        catch(_){
             setIsError(true);
         }
         finally{
             setIsLoading(false);
         }
+    }
+
+    function changeRgbTextColour(rbgText: string): void{
+        const [r, g, b] = rbgText.match(/\d+/g)?.map(Number) ?? [0, 0, 0];
+        const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+        setIsColourLight(brightness > 155);
+    }
+
+    function findOnEnterKey(): void{
+
     }
 
     const messages = {
@@ -80,8 +92,10 @@ export default function ColourFinder(){
                 {colourData && !isError && !isLoading &&
                     <div>
                         <h2>{colourData.keyword}</h2>
-                        <div className="colour-container" style={{backgroundColor: colourData.rgbValue}}>
-                            <p>{colourData.rgbValue}</p>
+                        <div className="colour-container" style={{backgroundColor: `rgb(${colourData.rgbValue})`}}>
+                            <p style={{color: isColourLight ? "black" : "white"}}>
+                                rgb({colourData.rgbValue})
+                            </p>
                         </div>
                     </div>  
                 }

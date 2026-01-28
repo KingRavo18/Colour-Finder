@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
         "/api": {
-            target: "https://color.serialif.com",
+            target: "https://csscolorsapi.com/api/colors",
             changeOrigin: true,
             rewrite: path => path.replace(/^\/api/, ""),
         },
