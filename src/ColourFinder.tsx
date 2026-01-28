@@ -26,14 +26,15 @@ export default function ColourFinder(){
         setColourData(null);
         setIsLoading(true);
         try{
-            const response = await fetch(`https://color.serialif.com/keyword=${colour}`);
+            const response = await fetch(`/api/keyword=${colour}`);
             if(!response.ok){
                 throw new Error("Could not retrieve colour.");
             }
             const data: ApiResponse = await response.json();
+            const keyword = data.base.keyword;
             setIsError(false);
             setColourData({
-                keyword: data.base.keyword,
+                keyword: keyword.at(0)?.toUpperCase() + keyword.slice(1),
                 rgbValue: data.base.rgb.value
             });
         }
@@ -72,13 +73,16 @@ export default function ColourFinder(){
             </div>
             
             <div className="result-container">
-                {!isLoading && !isError && messages.intro}
-                {isLoading && !isError && <SyncLoader size={5} color="var(--text-color)"/>}
+                {!isLoading && !isError && !colourData && messages.intro}
+                {isLoading && !isError && <SyncLoader size={5} color="var(--text-color)" style={{paddingTop: "5rem"}}/>}
                 {!isLoading && isError && messages.error}
 
                 {colourData && !isError && !isLoading &&
                     <div>
                         <h2>{colourData.keyword}</h2>
+                        <div className="colour-container" style={{backgroundColor: colourData.rgbValue}}>
+                            <p>{colourData.rgbValue}</p>
+                        </div>
                     </div>  
                 }
             </div>
