@@ -24,6 +24,7 @@ export default function ColourFinder(){
         if(colour.trim() === "" || colour.trim() === colourData?.keyword.toLowerCase()){
             return;
         }
+        setIsError(false);
         setColourData(null);
         setIsLoading(true);
         try{
@@ -33,7 +34,6 @@ export default function ColourFinder(){
             }
             const data: ApiResponse = await response.json();
             const keyword = data.data.name;
-            setIsError(false);
             setColourData({
                 keyword: keyword.at(0)?.toUpperCase() + keyword.slice(1),
                 rgbValue: data.data.rgb
