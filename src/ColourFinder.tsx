@@ -54,8 +54,10 @@ export default function ColourFinder(){
         setIsColourLight(brightness > 155);
     }
 
-    function findOnEnterKey(): void{
-
+    function findOnEnterKey(event: React.KeyboardEvent<HTMLInputElement>): void{
+        if(event.key === "Enter"){
+            findColour();
+        }
     }
 
     const messages = {
@@ -84,6 +86,7 @@ export default function ColourFinder(){
                         onChange={e => setColour(e.target.value)}
                         onKeyDown={findOnEnterKey}
                         title="Input the name of the colour you wish to display"
+                        autoFocus
                     />
                     <button onClick={findColour}
                             title="Find the colour"
