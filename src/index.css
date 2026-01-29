@@ -26,9 +26,9 @@ main{
 }
 
 h1{
-    margin-top: 3rem;
+    margin-top: 2rem;
     margin-bottom: 1.5rem;
-    font-size: clamp(3.5rem, calc(4vw + 1rem), 7rem);
+    font-size: clamp(5rem, 4vw + 1rem, 7rem);
     animation-name: title-falling-anim;
     padding-inline: 1rem;
     animation-duration: 1s;
@@ -41,27 +41,30 @@ button{
 .colour-input-container{
     animation-name: input-container-falling-anim;
     animation-duration: 1s;
+    padding: 0 1rem;
     text-align: left;
 
     & label{
-        font-size: 0.9em;
+        font-size: 1.1em;
     }
 
     & div{
         margin-top: 0.25rem;
         display: flex;
+        justify-content: center;
         align-items: center;
+        flex-wrap: wrap;
         gap: 0.2rem;
 
         & input{
             cursor: pointer;
-            padding: 0.2rem 0.5rem;
-            font-size: 1em;
+            padding: 0.4rem 0.5rem;
+            font-size: 1.2em;
             border: none;
             background-color: var(--input-color);
             border-radius: 2.5px;
             transition: 0.1s;
-            width: 15rem;
+            width: 25rem;
             
             &:hover{ background-color: var(--input-hover-color); }
             &:focus{
@@ -74,9 +77,9 @@ button{
             border: none;
             border-radius: 2.5px;
             background-color: var(--input-color);
-            font-size: 1em;
+            font-size: 1.2em;
             font-weight: bold;
-            padding: 0.2rem 0.9rem;
+            padding: 0.4rem 1.1rem;
             transition: 0.1s;
 
             &:hover{ background-color: var(--input-hover-color); }
@@ -92,9 +95,9 @@ button{
     & .message-text{
         animation-name: rising-anim;
         animation-duration: 1s;
-        max-width: 10rem;
+        max-width: 15rem;
         text-align: center;
-        font-size: 0.9em;
+        font-size: 1.2em;
         padding-top: 4rem;
     }
 
@@ -104,7 +107,7 @@ button{
 
     & h2{
         text-align: center;
-        padding: 2rem;
+        padding: 1.5rem 0 1rem 0;
         animation-name: rising-anim;
         animation-duration: 1s;
     }
@@ -114,14 +117,15 @@ button{
         justify-content: center;
         align-items: center;
         border-radius: 10px;
-        width: 12.5rem;
+        aspect-ratio: 1 / 1;
+        width: 20rem;
         border: 2px solid var(--text-color);
-        height: 12.5rem;
         animation-name: rising-anim;
         animation-duration: 1s;
 
-        & p{
+        & p{ 
             font-weight: bold;
+            font-size: 1.2rem; 
         }
     }
 }
@@ -133,7 +137,7 @@ button{
     }
     to {
         opacity: 1;
-        margin-top: 3rem;
+        margin-top: 2rem;
     }
 }
 
