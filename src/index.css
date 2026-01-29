@@ -14,9 +14,7 @@
     padding: 0;
 }
 
-body{
-    background-color: var(--background-color);
-}
+body{ background-color: var(--background-color); }
 
 main{
     display: flex;
@@ -34,9 +32,7 @@ h1{
     animation-duration: 1s;
 }
 
-button{
-    cursor: pointer;
-}
+button{ cursor: pointer; }
 
 .colour-input-container{
     animation-name: input-container-falling-anim;
@@ -44,9 +40,7 @@ button{
     padding: 0 1rem;
     text-align: left;
 
-    & label{
-        font-size: 1.1em;
-    }
+    & label{ font-size: 1.1em; }
 
     & div{
         margin-top: 0.25rem;
@@ -101,9 +95,7 @@ button{
         padding-top: 4rem;
     }
 
-    & .error-message{
-        color: red;
-    }
+    & .error-message{ color: red; }
 
     & h2{
         text-align: center;

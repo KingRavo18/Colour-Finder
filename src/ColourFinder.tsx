@@ -54,8 +54,8 @@ export default function ColourFinder(){
         setIsColourLight(brightness > 155);
     }
 
-    function findOnEnterKey(event: React.KeyboardEvent<HTMLInputElement>): void{
-        if(event.key === "Enter"){
+    function findOnEnterKey(e: React.KeyboardEvent<HTMLInputElement>): void{
+        if(e.key === "Enter"){
             findColour();
         }
     }
@@ -106,7 +106,7 @@ export default function ColourFinder(){
                     <div>
                         <h2>{colourData.keyword}</h2>
                         <div className="colour-container" style={{backgroundColor: `rgb(${colourData.rgbValue})`}}>
-                            <p style={{color: isColourLight ? "black" : "white"}}>
+                            <p style={{color: isColourLight ? "rgb(24, 24, 24)" : "white"}}>
                                 rgb({colourData.rgbValue})
                             </p>
                         </div>
