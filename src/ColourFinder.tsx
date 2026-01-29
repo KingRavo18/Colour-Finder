@@ -82,6 +82,7 @@ export default function ColourFinder(){
                         value={colour}
                         id="colour-input"
                         onChange={e => setColour(e.target.value)}
+                        onKeyDown={findOnEnterKey}
                         title="Input the name of the colour you wish to display"
                     />
                     <button onClick={findColour}
