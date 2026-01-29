@@ -116,6 +116,10 @@ button{
         height: 12.5rem;
         animation-name: rising-anim;
         animation-duration: 1s;
+
+        & p{
+            font-weight: bold;
+        }
     }
 }
 
