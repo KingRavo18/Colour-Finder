@@ -92,6 +92,7 @@ export default function ColourFinder(){
                         onChange={e => setColour(e.target.value)}
                         onKeyDown={findOnEnterKey}
                         title="Input the name of the colour you wish to display"
+                        autoComplete="off"
                         autoFocus
                     />
                     <button onClick={findColour}
