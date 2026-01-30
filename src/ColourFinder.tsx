@@ -13,6 +13,10 @@ type ApiResponse = {
     }
 }
 
+const lightThreshold = 155;
+const lightText = "white";
+const darkText = "rgb(24, 24, 24)";
+
 export default function ColourFinder(){
     const [colour, setColour] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -21,14 +25,16 @@ export default function ColourFinder(){
     const [isColourLight, setIsColourLight] = useState<boolean>(false);
 
     async function findColour(): Promise<void>{
-        if(colour.trim() === "" || colour.trim() === colourData?.keyword.toLowerCase()){
+        const normalisedText = colour.trim().replace(/\s+/g,"");
+        if(normalisedText === "" || normalisedText === colourData?.keyword.toLowerCase()){
             return;
         }
         setIsError(false);
         setColourData(null);
         setIsLoading(true);
         try{
-            const response = await fetch(`api/${colour.trim().replace(/ /g,"")}`);
+            const encodedInputText = encodeURIComponent(normalisedText);
+            const response = await fetch(`api/${encodedInputText}`);
             if(!response.ok){
                 throw new Error("Could not retrieve colour.");
             }
@@ -48,10 +54,11 @@ export default function ColourFinder(){
         }
     }
 
-    function changeRgbTextColour(rbgText: string): void{
-        const [r, g, b] = rbgText.match(/\d+/g)?.map(Number) ?? [0, 0, 0];
+    function changeRgbTextColour(rgbText: string): void{
+        const [r, g, b] = rgbText.match(/\d+/g)?.map(Number) ?? [0, 0, 0];
+        //Luminance formula
         const brightness = (r * 299 + g * 587 + b * 114) / 1000;
-        setIsColourLight(brightness > 155);
+        setIsColourLight(brightness > lightThreshold);
     }
 
     function findOnEnterKey(e: React.KeyboardEvent<HTMLInputElement>): void{
@@ -113,7 +120,7 @@ export default function ColourFinder(){
                     <div>
                         <h2>{colourData.keyword}</h2>
                         <div className="colour-container" style={{backgroundColor: `rgb(${colourData.rgbValue})`}}>
-                            <p style={{color: isColourLight ? "rgb(24, 24, 24)" : "white"}}>
+                            <p style={{color: isColourLight ? darkText : lightText}}>
                                 rgb({colourData.rgbValue})
                             </p>
                         </div>
