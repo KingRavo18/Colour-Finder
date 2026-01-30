@@ -39,9 +39,8 @@ export default function ColourFinder(){
                 throw new Error("Could not retrieve colour.");
             }
             const data: ApiResponse = await response.json();
-            const keyword = data.data.name;
             setColourData({
-                keyword: keyword.at(0)?.toUpperCase() + keyword.slice(1),
+                keyword: data.data.name,
                 rgbValue: data.data.rgb
             });
             changeRgbTextColour(data.data.rgb);
@@ -118,7 +117,7 @@ export default function ColourFinder(){
 
                 {colourData && !isError && !isLoading &&
                     <div>
-                        <h2>{colourData.keyword}</h2>
+                        <h2>{colourData.keyword.replace(/([A-Z])/g, ' $1').trim()}</h2>
                         <div className="colour-container" style={{backgroundColor: `rgb(${colourData.rgbValue})`}}>
                             <p style={{color: isColourLight ? darkText : lightText}}>
                                 rgb({colourData.rgbValue})
