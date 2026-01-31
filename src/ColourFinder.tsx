@@ -34,7 +34,7 @@ export default function ColourFinder(){
         setIsLoading(true);
         try{
             const encodedInputText = encodeURIComponent(normalisedText);
-            const response = await fetch(`https://csscolorsapi.com/api/colors/${encodedInputText}`);
+            const response = await fetch(`http://localhost/colourFinderProxy/proxyServer.php?colour=${encodedInputText}`);
             if(!response.ok){
                 throw new Error("Could not retrieve colour.");
             }
