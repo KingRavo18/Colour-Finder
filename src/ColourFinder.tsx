@@ -33,8 +33,7 @@ export default function ColourFinder(){
         setColourData(null);
         setIsLoading(true);
         try{
-            const encodedInputText = encodeURIComponent(normalisedText);
-            const response = await fetch(`./api/colour.js?colour=${encodedInputText}`);
+            const response = await fetch(`./api/colour.js?colour=${encodeURIComponent(normalisedText)}`);
             if(!response.ok){
                 throw new Error("Could not retrieve colour.");
             }
