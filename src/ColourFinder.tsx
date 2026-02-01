@@ -33,7 +33,8 @@ export default function ColourFinder(){
         setColourData(null);
         setIsLoading(true);
         try{
-            const response = await fetch(`./api/colour.js?colour=${encodeURIComponent(normalisedText)}`);
+            //./api/colour.js
+            const response = await fetch(`http://localhost/colourFinderProxy/proxyServer.php?colour=${encodeURIComponent(normalisedText)}`);
             if(!response.ok){
                 throw new Error("Could not retrieve colour.");
             }
