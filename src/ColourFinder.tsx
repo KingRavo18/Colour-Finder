@@ -22,7 +22,6 @@ export default function ColourFinder(){
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [isError, setIsError] = useState<boolean>(false);
     const [colourData, setColourData] = useState<ColourData | null>(null);
-    const [isColourLight, setIsColourLight] = useState<boolean>(false);
 
     async function findColour(): Promise<void>{
         const normalisedText = colour.trim().replace(/\s+/g,"");
@@ -42,7 +41,7 @@ export default function ColourFinder(){
                 keyword: data.data.name,
                 rgbValue: data.data.rgb
             });
-            changeRgbTextColour(data.data.rgb);
+            
         }
         catch(_){
             setIsError(true);
@@ -52,11 +51,11 @@ export default function ColourFinder(){
         }
     }
 
-    function changeRgbTextColour(rgbText: string): void{
+    function isColourLight(rgbText: string): boolean{
         const [r, g, b] = rgbText.match(/\d+/g)?.map(Number) ?? [0, 0, 0];
         //Luminance formula
         const brightness = (r * 299 + g * 587 + b * 114) / 1000;
-        setIsColourLight(brightness > lightThreshold);
+        return brightness > lightThreshold;
     }
 
     function findOnEnterKey(e: React.KeyboardEvent<HTMLInputElement>): void{
@@ -118,7 +117,7 @@ export default function ColourFinder(){
                     <div>
                         <h2>{colourData.keyword.replace(/([A-Z])/g, ' $1').trim()}</h2>
                         <div className="colour-container" style={{backgroundColor: `rgb(${colourData.rgbValue})`}}>
-                            <p style={{color: isColourLight ? darkText : lightText}}>
+                            <p style={{color: isColourLight(colourData.rgbValue) ? darkText : lightText}}>
                                 rgb({colourData.rgbValue})
                             </p>
                         </div>
