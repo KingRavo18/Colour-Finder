@@ -25,9 +25,9 @@ main{
 }
 
 h1{
-    margin-top: 2rem;
+    margin-top: 3rem;
     margin-bottom: 1.5rem;
-    font-size: clamp(4rem, 3vw + 1rem, 6rem);
+    font-size: clamp(3rem, 3vw + 1rem, 6rem);
     animation-name: title-falling-anim;
     padding-inline: 1rem;
     animation-duration: 1s;
@@ -87,20 +87,22 @@ button{ cursor: pointer; }
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-top: 2rem;
 
     & .message-text{
-        animation-name: rising-anim;
-        animation-duration: 1s;
         max-width: 15rem;
         text-align: center;
         font-size: 1.2em;
-        padding-top: 4rem;
+        margin-top: 3rem;
     }
 
     & .error-message{ 
-        
+        animation-name: rising-error-anim;
+        animation-duration: 1s;
+        border-radius: 5px;
+        border: 2px solid red;
+        background-color: rgb(230, 182, 182);
         color: red; 
+        padding: 10px 15px;
     }
 
     & h2{
@@ -136,7 +138,7 @@ button{ cursor: pointer; }
     }
     to {
         opacity: 1;
-        margin-top: 2rem;
+        margin-top: 3rem;
     }
 }
 
@@ -151,10 +153,21 @@ button{ cursor: pointer; }
     }
 }
 
+@keyframes rising-error-anim {
+    from {
+        opacity: 0; 
+        margin-top: 7rem; 
+    }
+    to {
+        opacity: 1;
+        margin-top: 3rem;
+    }
+}
+
 @keyframes rising-anim {
     from {
         opacity: 0; 
-        margin-top: 1rem; 
+        margin-top: 3rem; 
     }
     to {
         opacity: 1;
