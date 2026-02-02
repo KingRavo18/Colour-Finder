@@ -29,7 +29,6 @@ export default function ColourFinder(){
             return;
         }
         setIsError(false);
-        setColourData(null);
         setIsLoading(true);
         try{
             const response = await fetch(`./api/colour.js?colour=${encodeURIComponent(normalisedText)}`);
