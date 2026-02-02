@@ -66,7 +66,7 @@ export default function ColourFinder(){
     }
 
     function findOnEnterKey(e: React.KeyboardEvent<HTMLInputElement>): void{
-        if(e.key === "Enter"){
+        if(e.key === "Enter" && !isLoading){
             findColour();
         }
     }
