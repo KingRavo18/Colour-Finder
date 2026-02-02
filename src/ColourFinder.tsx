@@ -17,6 +17,14 @@ const lightThreshold = 155;
 const lightText = "white";
 const darkText = "rgb(24, 24, 24)";
 
+function IntroMessage(){
+    return (
+        <p className="message-text">
+            Please input the name of your colour.
+        </p>
+    )
+}
+
 export default function ColourFinder(){
     const [colour, setColour] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -64,11 +72,6 @@ export default function ColourFinder(){
     }
 
     const messages = {
-        intro: (
-            <p className="message-text">
-                Please input the name of your colour.
-            </p>
-        ),
         loading: (
             <SyncLoader 
                 size={5} 
@@ -109,7 +112,7 @@ export default function ColourFinder(){
             </div>
             
             <div className="result-container">
-                {!isLoading && !isError && !colourData && messages.intro}
+                {!isLoading && !isError && !colourData && <IntroMessage />}
                 {isLoading && !isError && messages.loading}
                 {!isLoading && isError && messages.error}
 
