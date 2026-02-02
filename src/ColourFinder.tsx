@@ -101,6 +101,7 @@ export default function ColourFinder(){
                     <button onClick={findColour}
                             title="Find the colour"
                             aria-label="Press to find the colour"
+                            disabled={isLoading}
                     >
                         Find
                     </button>
