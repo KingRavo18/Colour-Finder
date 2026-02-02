@@ -27,7 +27,7 @@ main{
 h1{
     margin-top: 2rem;
     margin-bottom: 1.5rem;
-    font-size: clamp(5rem, 4vw + 1rem, 7rem);
+    font-size: clamp(4rem, 3vw + 1rem, 6rem);
     animation-name: title-falling-anim;
     padding-inline: 1rem;
     animation-duration: 1s;
@@ -53,13 +53,13 @@ button{ cursor: pointer; }
 
         & input{
             cursor: pointer;
-            padding: 0.4rem 0.5rem;
+            padding: 0.5rem;
             font-size: 1.2em;
             border: none;
             background-color: var(--input-color);
             border-radius: 2.5px;
             transition: 0.1s;
-            width: 25rem;
+            width: clamp(20rem, 40vw, 30rem);
             
             &:hover{ background-color: var(--input-hover-color); }
             &:focus{
@@ -74,7 +74,7 @@ button{ cursor: pointer; }
             background-color: var(--input-color);
             font-size: 1.2em;
             font-weight: bold;
-            padding: 0.4rem 1.1rem;
+            padding: 0.5rem 1.1rem;
             transition: 0.1s;
 
             &:hover{ background-color: var(--input-hover-color); }
@@ -86,6 +86,8 @@ button{ cursor: pointer; }
 .result-container{
     display: flex;
     justify-content: center;
+    width: 100%;
+    margin-top: 2rem;
 
     & .message-text{
         animation-name: rising-anim;
@@ -96,11 +98,14 @@ button{ cursor: pointer; }
         padding-top: 4rem;
     }
 
-    & .error-message{ color: red; }
+    & .error-message{ 
+        
+        color: red; 
+    }
 
     & h2{
         text-align: center;
-        font-size: 2.5rem;
+        font-size: 2rem;
         padding: 2rem 0 1rem 0;
         animation-name: rising-anim;
         animation-duration: 1s;
@@ -112,7 +117,7 @@ button{ cursor: pointer; }
         align-items: center;
         border-radius: 10px;
         aspect-ratio: 1 / 1;
-        width: 20rem;
+        width: clamp(17.5rem, 17.5vw, 30rem);
         border: 2px solid var(--text-color);
         animation-name: rising-anim;
         animation-duration: 1s;
