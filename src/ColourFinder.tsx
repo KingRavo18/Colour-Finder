@@ -66,7 +66,6 @@ export default function ColourFinder(){
                 keyword: data.data.name,
                 rgbValue: data.data.rgb
             });
-            
         }
         catch(_){
             setColourData(null);
