@@ -25,6 +25,24 @@ function IntroMessage(){
     )
 }
 
+function ErrorMessage(){
+    return (
+        <p className="message-text error-message"> 
+            Could not find this colour. Please choose another or try again later.
+        </p>
+    )
+}
+
+function LoadingSpinner(){
+    return(
+        <SyncLoader 
+            size={5} 
+            color="var(--text-color)" 
+            style={{paddingTop: "5rem"}}
+        />
+    )
+}
+
 export default function ColourFinder(){
     const [colour, setColour] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -51,6 +69,7 @@ export default function ColourFinder(){
             
         }
         catch(_){
+            setColourData(null);
             setIsError(true);
         }
         finally{
@@ -69,21 +88,6 @@ export default function ColourFinder(){
         if(e.key === "Enter" && !isLoading){
             findColour();
         }
-    }
-
-    const messages = {
-        loading: (
-            <SyncLoader 
-                size={5} 
-                color="var(--text-color)" 
-                style={{paddingTop: "5rem"}}
-            />
-        ),
-        error: (
-            <p className="message-text error-message"> 
-                Could not find this colour. Please choose another or try again later.
-            </p>
-        ),
     }
 
     return(
@@ -113,10 +117,10 @@ export default function ColourFinder(){
             
             <div className="result-container">
                 {!isLoading && !isError && !colourData && <IntroMessage />}
-                {isLoading && !isError && messages.loading}
-                {!isLoading && isError && messages.error}
+                {isLoading && <LoadingSpinner />}
+                {!isLoading && isError && !colourData && <ErrorMessage />}
 
-                {colourData && !isError && !isLoading &&
+                {!isLoading && !isError && colourData && 
                     <div>
                         <h2>{colourData.keyword.replace(/([A-Z])/g, ' $1').trim()}</h2>
                         <div className="colour-container" style={{backgroundColor: `rgb(${colourData.rgbValue})`}}>
