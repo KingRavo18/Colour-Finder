@@ -121,14 +121,14 @@ export default function ColourFinder(){
                 {!isLoading && isError && !colourData && <ErrorMessage />}
 
                 {!isLoading && !isError && colourData && 
-                    <div>
+                    <>
                         <h2>{colourData.keyword.replace(/([A-Z])/g, ' $1').trim()}</h2>
                         <div className="colour-container" style={{backgroundColor: `rgb(${colourData.rgbValue})`}}>
                             <p style={{color: isColourLight(colourData.rgbValue) ? darkText : lightText}}>
                                 rgb({colourData.rgbValue})
                             </p>
                         </div>
-                    </div>  
+                    </>  
                 }
             </div>
         </main>
