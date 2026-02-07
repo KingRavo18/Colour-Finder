@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { SyncLoader } from "react-spinners";
+import IntroMessage from "./Components/IntroMessage";
 
 type ColourData = {
     keyword: string;
@@ -16,14 +17,6 @@ type ApiResponse = {
 const lightThreshold = 155;
 const lightText = "white";
 const darkText = "rgb(24, 24, 24)";
-
-function IntroMessage(){
-    return(
-        <p className="message-text">
-            Please input the name of your colour.
-        </p>
-    )
-}
 
 function ErrorMessage(){
     return(
