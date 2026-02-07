@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { SyncLoader } from "react-spinners";
 import IntroMessage from "./Components/IntroMessage";
+import ErrorMessage from "./Components/ErrorMessage";
+import LoadingSpinner from "./Components/LoadingSpinner";
 
 type ColourData = {
     keyword: string;
@@ -17,24 +18,6 @@ type ApiResponse = {
 const lightThreshold = 155;
 const lightText = "white";
 const darkText = "rgb(24, 24, 24)";
-
-function ErrorMessage(){
-    return(
-        <p className="message-text error-message"> 
-            Could not find this colour. Please choose another or try again later.
-        </p>
-    )
-}
-
-function LoadingSpinner(){
-    return(
-        <SyncLoader 
-            size={5} 
-            color="var(--text-color)" 
-            style={{paddingTop: "5rem"}}
-        />
-    )
-}
 
 export default function ColourFinder(){
     const [colour, setColour] = useState<string>("");

@@ -5,8 +5,8 @@ export default async function handler(req, res){
     }
 
     try{
-        const r = await fetch(`https://csscolorsapi.com/api/colors/${encodeURIComponent(colour)}`);
-        if(!r.ok){
+        const response = await fetch(`https://csscolorsapi.com/api/colors/${encodeURIComponent(colour)}`);
+        if(!response.ok){
             return res.status(404).json({ error: "Colour not found" });
         }
 
