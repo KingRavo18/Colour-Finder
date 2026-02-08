@@ -9,7 +9,7 @@ export default async function handler(req, res){
         if(!response.ok){
             return res.status(404).json({ error: "Colour not found" });
         }
-        const data = await r.json();
+        const data = await response.json();
         res.json(data);
     }catch{
         res.status(500).json({ error: "Failed to fetch colour" });
