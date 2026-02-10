@@ -41,7 +41,10 @@ button{ cursor: pointer; }
     padding: 0 1rem;
     text-align: left;
 
-    & label{ font-size: 1.1em; }
+    & label{ 
+        font-size: 1.1em; 
+        cursor: pointer;
+    }
 
     & div{
         margin-top: 0.25rem;
