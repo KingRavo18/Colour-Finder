@@ -7,7 +7,6 @@ type ColourData = {
     keyword: string;
     rgbValue: string;
 }
-
 type ApiResponse = {
     data: {
         name: string,
